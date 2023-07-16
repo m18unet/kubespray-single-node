@@ -1,0 +1,37 @@
+---
+kube_version: v1.26.5
+cluster_name: cluster.local
+container_manager: containerd
+etcd_deployment_type: kubeadm
+
+kube_proxy_mode: iptables
+kube_network_plugin: flannel
+flannel_interface: eth1
+flannel_backend_type: host-gw
+
+kube_service_addresses: 10.233.0.0/18
+kube_pods_subnet: 10.233.64.0/18
+
+enable_nodelocaldns: false
+helm_enabled: true
+krew_enabled: true
+metrics_server_enabled: true
+
+local_path_provisioner_enabled: true
+local_path_provisioner_namespace: platform
+
+ingress_nginx_enabled: true
+ingress_nginx_host_network: true
+ingress_nginx_namespace: platform
+ingress_nginx_class: nginx
+
+ntp_enabled: true
+ntp_manage_config: true
+ntp_servers:
+  - "0.pool.ntp.org iburst"
+  - "1.pool.ntp.org iburst"
+  - "2.pool.ntp.org iburst"
+  - "3.pool.ntp.org iburst"
+
+override_system_hostname: false
+auto_renew_certificates: true
