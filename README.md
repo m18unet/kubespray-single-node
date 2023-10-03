@@ -10,20 +10,16 @@ For more detailed information about kubespray, you can review the [official docu
 
 Before you begin, make sure you have the following prerequisites installed on your machine:
 
-- [VirtualBox](https://www.virtualbox.org/wiki/Downloads) _(I tested it with version `6.1.44 r156814`)_
-- [Vagrant](https://developer.hashicorp.com/vagrant/downloads) _(I tested it with version `2.3.6`)_
+- [VirtualBox](https://www.virtualbox.org/wiki/Downloads) _(Tested on version `6.1.44 r156814`)_
+- [Vagrant](https://developer.hashicorp.com/vagrant/downloads) _(Tested on version `2.3.6`)_
 
 ## Getting Started
+
+Review the [`config.yml`](config.yml) file and make any changes you need. After that:
 
 ```bash
 vagrant up
 ```
-
-## Quick Details
-
-1. Customize the VM by reviewing the [`vagrant/utilities.rb`](vagrant/utilities.rb) file for options like CPU, memory, and OS. 
-
-1. To override the values you want in the `kubespray` project, review the [`ansible/extra-vars.yml`](ansible/extra-vars.yml) file.
 
 ## Contribution
 
