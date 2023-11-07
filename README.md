@@ -1,26 +1,23 @@
-# kubespray Single Node
+# Vagrant k8s
 
-This repository aims to create a Kubernetes cluster running on a single node using [kubespray](https://github.com/kubernetes-sigs/kubespray).
+*SIngle node kubernetes cluster on vagrant vm using kubespray.*
 
-kubespray is a tool that automates the deployment and configuration of Kubernetes clusters. By leveraging kubespray, this project simplifies the process of setting up a Kubernetes environment on a single node.
+> Note: This repo is modified version of fork from [m18unet/kubespray-single-node](https://github.com/m18unet/kubespray-single-node).
+>
+> Note: official kubespray repo also has a [vagrant file](https://github.com/kubernetes-sigs/kubespray/blob/master/Vagrantfile) which should work.
 
-For more detailed information about kubespray, you can review the [official documentation](https://kubespray.io).
 
-## Prerequisites
 
-Before you begin, make sure you have the following prerequisites installed on your machine:
+[Kind](https://kind.sigs.k8s.io/docs/user/quick-start/) is my first choice for my dev k8s cluster. But sometime specific workloads just refuse to run in a docker inside docker environment, this is where I use this repo as my single node dev k8s cluster using kubespray.
 
-- [VirtualBox](https://www.virtualbox.org/wiki/Downloads) _(Tested on version `6.1.44 r156814`)_
-- [Vagrant](https://developer.hashicorp.com/vagrant/downloads) _(Tested on version `2.3.6`)_
+> Note: `minikube --vm` didn't worked well for one of my workload, hence kubespray in a vm.
 
-## Getting Started
 
-Review the [`config.yml`](config.yml) file and make any changes you need. After that:
 
-```bash
-vagrant up
-```
+**Usage:**
 
-## Contribution
+* Edit `config.yaml`, if required.
+* `vagrant up`
 
-[Pull requests](https://github.com/m18unet/kubespray-single-node/compare) are welcome! Feel free to contribute and improve the project by submitting your changes.
+
+

@@ -1,3 +1,5 @@
 # Vagrant
 .vagrant/
 *.log
+config
+kubeconfig

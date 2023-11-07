@@ -7,23 +7,10 @@ require 'yaml'
 # Import configuration from config.yml
 cfg = YAML.load_file("config.yml")['vagrant']
 
-# Check if the VM operating system is supported
-SUPPORTED_OS = {
-  "debian11"   => { :box => "generic/debian11",   :version => "4.2.16" },
-  "ubuntu2204" => { :box => "generic/ubuntu2204", :version => "4.2.16" },
-}
-
-if ! SUPPORTED_OS.key?(cfg['vm_os'])
-  puts "Unsupported OS   : '#{cfg['vm_os']}'"
-  supported_os_list = SUPPORTED_OS.keys.map { |os| "'#{os}'" }
-  puts "Supported OS are : #{supported_os_list.join(', ')}"
-  exit 1
-end
 
 Vagrant.configure("2") do |config|
-  config.vm.box = SUPPORTED_OS[cfg['vm_os']][:box]
-  config.vm.box_version = SUPPORTED_OS[cfg['vm_os']][:version]
 
+  config.vm.box = cfg['vm_box']
   config.vm.provider "virtualbox"
   config.vm.synced_folder ".", "/vagrant"
   config.vm.box_check_update = false
@@ -32,6 +19,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "node1"
   config.vm.hostname = "node1"
   config.vm.network :private_network, ip: cfg['vm_ip_addr']
+  config.vm.network "forwarded_port", guest: 6443, host: 6443
 
   config.vm.provider :virtualbox do |vb|
     vb.cpus = cfg['vm_cpus']
@@ -84,5 +72,7 @@ Vagrant.configure("2") do |config|
 
     echo -e "alias k=kubectl" > /etc/profile.d/kubectl.sh
     echo -e "complete -o default -F __start_kubectl k"  >> /etc/profile.d/kubectl.sh
+
+    cp ${KUBE_DIR}/config /vagrant/kubeconfig
   SHELL
 end

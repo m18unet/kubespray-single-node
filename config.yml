@@ -2,9 +2,9 @@
 vagrant:
   vm_cpus: 4
   vm_memory: 8192
-  vm_ip_addr: '10.10.22.57'
+  vm_ip_addr: '192.168.56.100'
   vm_username: vagrant
-  vm_os: debian11                   # NOTE: Check the Vagrantfile to see SUPPORTED_OS
+  vm_box: ubuntu/jammy64
   kubespray_version: '2.22.1'
   kubespray_dir: /opt/kubespray
 
@@ -24,19 +24,19 @@ ansible:
     kube_pods_subnet: 10.233.64.0/18
 
     enable_nodelocaldns: false
-    helm_enabled: true
-    krew_enabled: true
-    metrics_server_enabled: true
+    helm_enabled: false
+    krew_enabled: false
+    metrics_server_enabled: false
 
     local_path_provisioner_enabled: true
     local_path_provisioner_namespace: platform
 
-    ingress_nginx_enabled: true
+    ingress_nginx_enabled: false
     ingress_nginx_host_network: true
     ingress_nginx_namespace: platform
     ingress_nginx_class: nginx
 
-    ntp_enabled: true
+    ntp_enabled: false
     ntp_manage_config: true
     ntp_servers:
       - "0.pool.ntp.org iburst"
